@@ -1,0 +1,22 @@
+@import "sweetalert2/dist/sweetalert2.min.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.limon-carousel-dots {
+  bottom: -6px;
+  z-index: 0;
+}
+
+.limon-form .ant-form-item-required:not(.ant-form-item-required-mark-optional)::before {
+  display: none !important;
+}
+
+.limon-form .ant-form-item-label > label.ant-form-item-required:not(.ant-form-item-required-mark-optional)::after {
+  content: "*";
+  display: inline-block;
+  margin-inline-start: 6px;
+  color: #2f9e44;
+  line-height: 1;
+}
