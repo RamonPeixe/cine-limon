@@ -1,5 +1,5 @@
 {
-  "name": "limon-informatica",
+  "name": "cine-limon",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,12 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@ant-design/icons": "^6.0.0",
+    "@ant-design/icons": "^6.1.0",
     "antd": "^5.27.1",
     "autoprefixer": "^10.4.21",
+    "axios": "^1.13.1",
     "postcss": "^8.5.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-router-dom": "^7.9.5",
     "sweetalert2": "^11.22.5"
   },
   "devDependencies": {

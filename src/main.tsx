@@ -6,13 +6,14 @@ import { antdTheme } from "./theme/antdTheme";
 import "antd/dist/reset.css";    
 import "./styles/global.css";     
 
-import App from "./App";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./routes";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ConfigProvider theme={antdTheme}>
       <AntdApp>
-        <App />
+        <RouterProvider router={router} />
       </AntdApp>
     </ConfigProvider>
   </React.StrictMode>
