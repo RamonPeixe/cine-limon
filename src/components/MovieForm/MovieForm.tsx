@@ -1,6 +1,6 @@
 import { Form, Input, InputNumber, Button } from "antd";
 import type { Movie } from "@/types/Movie";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export interface MovieFormProps {
   initialValues?: Partial<Movie>;
