@@ -1,16 +1,5 @@
-import { Form, Input, InputNumber, Button } from "antd";
-import type { Movie } from "@/types/Movie";
-import type { ReactNode } from "react";
-
-export interface MovieFormProps {
-  initialValues?: Partial<Movie>;
-  onFinish: (values: Partial<Movie>) => void;
-  onCancel?: () => void;
-  submitText?: string;
-  cancelText?: string;
-  loading?: boolean;
-  children?: ReactNode;
-}
+import { Form, Input, Button } from "antd";
+import type { MovieFormProps } from "./MovieForm.type";
 
 export function MovieForm({
   initialValues = {},
@@ -32,25 +21,36 @@ export function MovieForm({
       className="max-w-2xl"
     >
       <Form.Item
-        name="name"
+        name="nome"
         label="Nome"
         rules={[{ required: true, message: "Por favor, insira o nome do filme" }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        name="genre"
+        name="genero"
         label="Gênero"
         rules={[{ required: true, message: "Por favor, insira o gênero" }]}
       >
         <Input />
       </Form.Item>
       <Form.Item
-        name="releaseYear"
+        name="ano"
         label="Ano"
-        rules={[{ required: true, message: "Por favor, insira o ano" }]}
+        rules={[
+          { required: true, message: "Por favor, insira o ano" },
+          { pattern: /^\d+$/, message: "O ano deve conter apenas números" },
+          {
+            validator: (_, value) => {
+              if (!value) return Promise.resolve();
+              const num = Number(value);
+              if (num >= 1895 && num <= 2050) return Promise.resolve();
+              return Promise.reject(new Error("O ano deve estar entre 1895 e 2050"));
+            }
+          }
+        ]}
       >
-        <InputNumber min={1888} max={2025} />
+        <Input maxLength={4} inputMode="numeric" />
       </Form.Item>
       {children}
       <Form.Item>

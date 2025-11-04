@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { MovieService } from "@/services/MovieService";
+import { useCreateMovie } from "@/hooks/useCreateMovie";
 import type { Movie } from "@/types/Movie";
 import { Card, message } from "antd";
 import { MovieForm } from "@/components/MovieForm";
@@ -7,9 +7,10 @@ import { MovieForm } from "@/components/MovieForm";
 export default function CreateMovie() {
   const navigate = useNavigate();
 
+  const { createMovie, loading } = useCreateMovie();
   const onFinish = async (values: Partial<Movie>) => {
     try {
-  await MovieService.create(values as Omit<Movie, "id">);
+      await createMovie(values as Omit<Movie, "id">);
       message.success("Filme criado com sucesso!");
       navigate("/");
     } catch {
@@ -25,6 +26,7 @@ export default function CreateMovie() {
           onFinish={onFinish}
           onCancel={() => navigate("/")}
           submitText="Criar"
+          loading={loading}
         />
       </Card>
     </div>

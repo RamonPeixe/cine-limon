@@ -15,9 +15,14 @@ export default function Header() {
               className="h-16 w-16 lg:h-20 lg:w-20 rounded-full ring-1 ring-divider shadow-sm"
             />
             <div className="leading-tight">
-              <span className="block text-leaf-700 font-brandSans font-extrabold tracking-tight text-3xl md:text-4xl lg:text-5xl">
+              <button
+                type="button"
+                onClick={() => navigate("/")}
+                className="block text-leaf-700 font-brandSans font-extrabold tracking-tight text-3xl md:text-4xl lg:text-5xl focus:outline-none"
+                style={{ background: "none", border: "none", padding: 0, cursor: "pointer" }}
+              >
                 Cine Limon
-              </span>
+              </button>
             </div>
           </div>
           <div className="hidden md:flex items-center gap-3">

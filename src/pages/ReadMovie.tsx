@@ -1,24 +1,20 @@
+
 import { useNavigate, useParams } from "react-router-dom";
-import { MovieService } from "@/services/MovieService";
-import { useState, useEffect } from "react";
-import type { Movie } from "@/types/Movie";
-import { Card, Button } from "antd";
+import { Card, Button, Spin, Alert } from "antd";
+import { useMovie } from "@/hooks/useMovie";
+
 
 export default function ReadMovie() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [movie, setMovie] = useState<Movie | null>(null);
+  const { movie, loading, error } = useMovie(id);
 
-  useEffect(() => {
-    const fetchMovie = async () => {
-      if (id) {
-        const data = await MovieService.getById(Number(id));
-        setMovie(data);
-      }
-    };
-    fetchMovie();
-  }, [id]);
-
+  if (loading) {
+    return <Spin tip="Carregando..." />;
+  }
+  if (error) {
+    return <Alert type="error" message={error} showIcon />;
+  }
   if (!movie) return null;
 
   return (
@@ -32,15 +28,15 @@ export default function ReadMovie() {
           </div>
           <div>
             <span className="font-medium">Nome: </span>
-            <span>{movie.name}</span>
+            <span>{movie.nome}</span>
           </div>
           <div>
             <span className="font-medium">Gênero: </span>
-            <span>{movie.genre}</span>
+            <span>{movie.genero}</span>
           </div>
           <div>
             <span className="font-medium">Ano: </span>
-            <span>{movie.releaseYear}</span>
+            <span>{movie.ano}</span>
           </div>
         </div>
         <div className="mt-6">
